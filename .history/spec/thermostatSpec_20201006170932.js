@@ -23,8 +23,7 @@ describe('Thermostat', function() {
     expect(thermostat.down(11)).toEqual('Cannot go below minimum')
   });
   it('has a max temp of 25', function() {
-    thermostat.up(5)
-    expect(thermostat.showTemp()).toEqual(25)
+    expect(thermostat.maxTemp).toEqual(25)
   });
   it('cannot go above maximum', function() {
     expect(thermostat.up(20)).toEqual('Cannot go above maximum')
@@ -36,12 +35,4 @@ describe('Thermostat', function() {
     thermostat.switchOff()
     expect(thermostat.isOn()).toBe(false)
   });
-
-
-  it("can increase temperature up to 32 when powersave is off", function(){
-    thermostat.switchOff();
-    thermostat.up(12); 
-    expect(thermostat.showTemp()).toEqual(32)
-  });
-
 });

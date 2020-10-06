@@ -37,9 +37,12 @@ describe('Thermostat', function() {
     expect(thermostat.isOn()).toBe(false)
   });
 
+  it("has a max temperature of 32 when powerSave is off", function() {
+    expect(thermostat.maximumTemp).toEqual(25)
+  });
 
   it("can increase temperature up to 32 when powersave is off", function(){
-    thermostat.switchOff();
+    thermostat.isOn();
     thermostat.up(12); 
     expect(thermostat.showTemp()).toEqual(32)
   });
