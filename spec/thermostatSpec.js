@@ -26,8 +26,14 @@ describe('Thermostat', function() {
     thermostat.up(5)
     expect(thermostat.showTemp()).toEqual(25)
   });
-  it('cannot go above maximum', function() {
+  it('cannot go above maximum with powersave on ', function() {
     expect(thermostat.up(20)).toEqual('Cannot go above maximum')
+  });
+  // added this test to test that with powersave off I could go above limit of 25 
+  it('cannot go above max with powersave off', function(){
+    thermostat.switchOff();
+    thermostat.up(10);
+    expect(thermostat.showTemp()).toEqual(30)
   });
   it('powersave = false', function() {
     expect(thermostat.isOn()).toBe(true)
