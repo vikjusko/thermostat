@@ -1,3 +1,5 @@
+'use strict';
+
 describe('Thermostat', function() {
   
   var thermostat;
@@ -19,5 +21,18 @@ describe('Thermostat', function() {
   });
   it('cannot go below min temp', function(){
     expect(thermostat.down(11)).toEqual('Cannot go below minimum')
+  });
+  it('has a max temp of 32', function() {
+    expect(thermostat.maxTemp).toEqual(32)
+  });
+  it('cannot go above maximum', function() {
+    expect(thermostat.up(20)).toEqual('Cannot go above maximum')
+  });
+  it('powersave = false', function() {
+    expect(thermostat.isOn()).toBe(true)
+  });
+  it('can turn on powersave', function() {
+    thermostat.switchOff()
+    expect(thermostat.isOn()).toBe(false)
   });
 });
