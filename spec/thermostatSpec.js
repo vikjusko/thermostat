@@ -14,4 +14,10 @@ describe('Thermostat', function() {
   it('can decrease the temperature by a given number', function() {
     expect(thermostat.down(5)).toEqual(15)
   });
+  it('has a minimum temperature of 10', function(){
+      expect(thermostat.minTemp).toEqual(10)
+  });
+  it('cannot go below min temp', function(){
+    expect(thermostat.down(11)).toEqual('Cannot go below minimum')
+  });
 });
