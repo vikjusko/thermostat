@@ -13,32 +13,22 @@ class Thermostat {
     return this.temp;
   }
   up(num) {
-    //this is a bit of a mess but will try and refactor to simplify 
-    if (this.powerSave) {
-      if ((this.temp + num) > this.maxTemp_ps_On) {
+    this.temp += num;
+    if (this.powerSave === true  && this.temp + num > this.maxTemp_ps_On) {
         return "Cannot go above maximum"
-      } else {
-      return this.temp += num 
-      }
-    } else {
-      if ((this.temp + num) > this.maxTemp_ps_Off) {
+      }  else if  (this.powerSave === false && this.temp + num > this.maxTemp_ps_Off) {
         return 'Cannot go above maximum'
-      } else {
-      return this.temp += num;
       }
     }
-  }
-  //   if ((this.temp + num) > this.maxTemp) {
-  //     return "Cannot go above maximum"
-  //   }
-  //   return this.temp += num;
-  // }
+  
+
   down(num) {
+    this.temp -= num;
     if ((this.temp - num) < this.minTemp) {
       return "Cannot go below minimum"
     } 
-    return this.temp -= num;
   }
+
   isOn() {
     return this.powerSave === true;
   }
@@ -57,5 +47,18 @@ class Thermostat {
   reset() {
     this.temp = 20;
   }
+
+  usage() {
+    if (this.temp <= 18) {
+    return "low-usage"; 
+    }
+    else if (this.temp <= 25) {
+      return "medium-usage";
+    }
+    else {
+      return "high-usage";
+    }
+  }
+
 }
 
