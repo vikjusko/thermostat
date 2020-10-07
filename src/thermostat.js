@@ -12,7 +12,7 @@ class Thermostat {
   showTemp() {
     return this.temp;
   }
-  up(num) {
+  up(num=1) {
     this.temp += num;
     if (this.powerSave === true  && this.temp + num > this.maxTemp_ps_On) {
         return "Cannot go above maximum"
@@ -22,7 +22,7 @@ class Thermostat {
     }
   
 
-  down(num) {
+  down(num=1) {
     this.temp -= num;
     if ((this.temp - num) < this.minTemp) {
       return "Cannot go below minimum"
@@ -33,8 +33,13 @@ class Thermostat {
     return this.powerSave === true;
   }
 
-  switchOff() {
-    this.powerSave = false;
+  switchMode() {
+    if(this.powerSave == true) {
+      this.powerSave = false;
+    }
+    else if(this.powerSave == false) {
+      this.powerSave = true;
+    } 
   }
 
   maximumTemp() {
