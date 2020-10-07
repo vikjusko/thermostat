@@ -1,8 +1,8 @@
 'use strict';
 
 class Thermostat {
-  constructor(temp) {
-   this.temp = temp; 
+  constructor() {
+   this.temp = 20; 
    this.minTemp = 10;
    this.maxTemp_ps_On = 25;
    this.maxTemp_ps_Off = 32;
