@@ -34,23 +34,10 @@ describe('Thermostat', function() {
     thermostat.up(20)
     expect(thermostat.temp).toEqual(25)
   });
-  // added this test to test that with powersave off I could go above limit of 25 
-  it('cannot go above max with powersave off', function(){
-    thermostat.switchMode();
-    thermostat.up(10);
-    expect(thermostat.showTemp()).toEqual(30)
-  });
-  it('powersave = false', function() {
-    expect(thermostat.isOn()).toBe(true)
-  });
-  it('can turn on powersave', function() {
-    thermostat.switchMode()
-    expect(thermostat.isOn()).toBe(false)
-  });
 
 
   it("can increase temperature up to 32 when powersave is off", function(){
-    thermostat.switchMode();
+    thermostat.switchOff();
     thermostat.up(12); 
     expect(thermostat.temp).toEqual(32)
   });
@@ -70,9 +57,20 @@ describe('Thermostat', function() {
     expect(thermostat.usage()).toEqual("low-usage")
   });
   it("tells you that you are wasting energy when it is more than 25 degrees", function(){
-    thermostat.switchMode()
+    thermostat.switchOff()
     thermostat.up(8)
     expect(thermostat.usage()).toEqual("high-usage")
+  });
+
+  it("can switch the powersave mode off with swtichoff function", function(){
+    thermostat.switchOff()
+    expect(thermostat.powerSave).toEqual(false)
+  });
+
+  it("it can switch the powersave mode back on", function(){
+    thermostat.switchOff();
+    thermostat.switchOn();
+    expect(thermostat.powerSave).toEqual(true);
   });
 
 });

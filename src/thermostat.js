@@ -29,17 +29,13 @@ class Thermostat {
     } 
   }
 
-  isOn() {
-    return this.powerSave === true;
+
+  switchOn(){
+    this.powerSave = true;
   }
 
-  switchMode() {
-    if(this.powerSave == true) {
-      this.powerSave = false;
-    }
-    else if(this.powerSave == false) {
-      this.powerSave = true;
-    } 
+  switchOff() {
+    this.powerSave = false;
   }
 
   maximumTemp() {
