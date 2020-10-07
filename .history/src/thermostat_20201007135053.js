@@ -54,8 +54,5 @@ class Thermostat {
     return this.temp === this.maxTemp_ps_On;
   }
  
-  reset() {
-    this.temp = 20;
-  }
 }
 
