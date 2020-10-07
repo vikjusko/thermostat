@@ -14,18 +14,18 @@ class Thermostat {
   }
   up(num=1) {
     this.temp += num;
-    if (this.powerSave === true  && this.temp + num > this.maxTemp_ps_On) {
-        return "Cannot go above maximum"
-      }  else if  (this.powerSave === false && this.temp + num > this.maxTemp_ps_Off) {
-        return 'Cannot go above maximum'
+    if ((this.powerSave === true)  && (this.temp  > this.maxTemp_ps_On)) {
+        this.temp = this.maxTemp_ps_On;
+      }  else if  ((this.powerSave === false) && (this.temp > this.maxTemp_ps_Off)) {
+        this.temp = this.maxTemp_ps_Off;
       }
     }
   
 
   down(num=1) {
     this.temp -= num;
-    if ((this.temp - num) < this.minTemp) {
-      return "Cannot go below minimum"
+    if (this.temp < this.minTemp) {
+      this.temp = this.minTemp;
     } 
   }
 

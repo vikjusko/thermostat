@@ -23,14 +23,16 @@ describe('Thermostat', function() {
       expect(thermostat.minTemp).toEqual(10)
   });
   it('cannot go below min temp', function(){
-    expect(thermostat.down(11)).toEqual('Cannot go below minimum')
+    thermostat.down(11)
+    expect(thermostat.temp).toEqual(10)
   });
   it('has a max temp of 25', function() {
     thermostat.up(5)
     expect(thermostat.showTemp()).toEqual(25)
   });
   it('cannot go above maximum with powersave on ', function() {
-    expect(thermostat.up(20)).toEqual('Cannot go above maximum')
+    thermostat.up(20)
+    expect(thermostat.temp).toEqual(25)
   });
   // added this test to test that with powersave off I could go above limit of 25 
   it('cannot go above max with powersave off', function(){
@@ -68,6 +70,7 @@ describe('Thermostat', function() {
     expect(thermostat.usage()).toEqual("low-usage")
   });
   it("tells you that you are wasting energy when it is more than 25 degrees", function(){
+    thermostat.switchMode()
     thermostat.up(8)
     expect(thermostat.usage()).toEqual("high-usage")
   });
