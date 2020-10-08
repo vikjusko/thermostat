@@ -1,4 +1,11 @@
-$(document).ready(function () {
+$(function() {
+
+$('#choose-city').on('submit', function(event) {
+  event.preventDefault();
+  var city = $('#chosen-city').val();
+  displayWeather(city);
+});
+
   var thermostat = new Thermostat();
   $("#temperature").text(thermostat.temp);
 
@@ -16,7 +23,7 @@ $("#down").on("click", function() {
 $('#reset').on("click", function() {
   thermostat.reset();
   $("#temperature").text(showTemp());
-})
+});
 
 $('#on').on("click", function() {
 	thermostat.switchOn();
@@ -39,5 +46,14 @@ $("#off").on("click", function () {
 		}
 		 $("#temperature").text(thermostat.temp);
 	}
-	
+
+function displayWeather(city) {
+ var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city;
+ var token = '&appid=2e32145359025f11feb76cabef2e20fd';
+ var units = '&units=metric';
+ $.get(url + token + units, function(data) {
+	 $("#c-temperature").text(data.main.temp); 
+	})
+}	
+
 });
