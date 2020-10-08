@@ -1,43 +1,58 @@
-$(document).ready(function () {
-  var thermostat = new Thermostat();
-  $("#temperature").text(thermostat.temp);
+$(function () {
 
+	$('#select-city').on ("submit", function(event) {
+		event.preventDefault();
+		let city = $('#current-city').val();
+		displayWeather(city)
+	});
 
-$("#up").on("click", function() {
-	thermostat.up();
-	showTemp(); 
-});
+	let thermostat = new Thermostat();
+	$("#temperature").text(thermostat.temp);	
 
-$("#down").on("click", function() {
-  thermostat.down();
-  $("#temperature").text(showTemp()); 
-});
+	function displayWeather(city) {
+		let url = "http://api.openweathermap.org/data/2.5/weather?q="
+		let appId = "&appid=2e32145359025f11feb76cabef2e20fd"
+		let units = "&units=metric"
+		$.get(url + city + appId + units, function(data) {
+			$('#current-temperature').text(data.main.temp);
+		})
+	}
 
-$('#reset').on("click", function() {
-  thermostat.reset();
-  $("#temperature").text(showTemp());
-})
+	$("#up").on("click", function() {
+		thermostat.up();
+		showTemp(); 
+	});
 
-$('#on').on("click", function() {
-  thermostat.switchOn();
-  $("#powersaving").css("color", "green");
-});
+	$("#down").on("click", function() {
+		thermostat.down();
+		$("#temperature").text(showTemp()); 
+	});
 
-$("#off").on("click", function () {
-  thermostat.switchOff();
-  $("#powersaving").css("color", "red");
-});
+	$('#reset').on("click", function() {
+		thermostat.reset();
+		$("#temperature").text(showTemp());
+	})
 
+	$('#on').on("click", function() {
+		thermostat.switchOn();
+		$("#powersaving").css("color", "green");
+	});
+
+	$("#off").on("click", function () {
+		thermostat.switchOff();
+		$("#powersaving").css("color", "red");
+	});
 
 	function showTemp(){
 		if( thermostat.usage() === "low-usage") {
 			$('#temperature').css('color', 'green');
-		}else if (thermostat.usage() === "medium-usage"){
+		} else if (thermostat.usage() === "medium-usage"){
 			$('#temperature').css('color', 'black'); 
 		} else { 
 			$('#temperature').css('color', 'red'); 
 		}
-		 $("#temperature").text(thermostat.temp);
+		$("#temperature").text(thermostat.temp);
 	}
 	
 });
+

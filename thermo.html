@@ -6,13 +6,21 @@
   <script src="src/interface.js"></script> 
 </head>
 
-<body>
-    <h1 id="temperature"></h1>
-  <button id='up'>+</button>
-  <button id='down'>-</button>
-  <button id='reset'>RESET</button>
-  <h1 id="powersaving">POWER SAVER<h1>
-    <button id="on">ON</button>
-    <button id="off">OFF</button>
-</body>
+  <body>
+      <h1 id="temperature"></h1>
+      <div class="content"></div>
+    <button id='up'>+</button>
+    <button id='down'>-</button>
+    <button id='reset'>RESET</button>
+    <h1 id="powersaving">POWER SAVER<h1>
+      <button id="on">ON</button>
+      <button id="off">OFF</button>
+      <section>
+        <h1>Current temperature: <span id="current-temperature"></span></h1>
+        <form id='select_city'>
+          <input id='current_city' type='text' placeholder='select your city'>
+          <input type='submit' value='Submit'>
+        </form>
+      </section>
+  </body>
 </html>

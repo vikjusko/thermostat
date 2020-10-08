@@ -21,7 +21,6 @@ class Thermostat {
       }
     }
   
-
   down(num=1) {
     this.temp -= num;
     if (this.temp < this.minTemp) {
@@ -29,9 +28,11 @@ class Thermostat {
     } 
   }
 
-
   switchOn(){
     this.powerSave = true;
+    if(this.temp > this.maxTemp_ps_On) {
+      return this.temp = this.maxTemp_ps_On
+    }
   }
 
   switchOff() {
