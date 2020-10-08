@@ -7,8 +7,10 @@ $('#choose-city').on('submit', function(event) {
 });
 
   var thermostat = new Thermostat();
-  $("#temperature").text(thermostat.temp);
-
+  /*$("#temperature").text(thermostat.temp);*/
+$.get('https://localhost:9292', function(data) {
+	 $("#c-temperature").text(data.outside-temperature); 
+	})
 
 $("#up").on("click", function() {
 	thermostat.up();
