@@ -19,7 +19,7 @@ $('#reset').on("click", function() {
 })
 
 $('#on').on("click", function() {
-  thermostat.switchOn();
+	thermostat.switchOn();
   $("#powersaving").css("color", "green");
 });
 

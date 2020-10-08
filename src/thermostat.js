@@ -31,7 +31,10 @@ class Thermostat {
 
 
   switchOn(){
-    this.powerSave = true;
+    this.powerSave = true; 
+    if (this.temp > this.maxTemp_ps_On) {
+      this.temp = this.maxTemp_ps_On;
+    }
   }
 
   switchOff() {
