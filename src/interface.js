@@ -8,8 +8,8 @@ $('#choose-city').on('submit', function(event) {
 
   var thermostat = new Thermostat();
   /*$("#temperature").text(thermostat.temp);*/
-$.get('https://localhost:9292', function(data) {
-	 $("#c-temperature").text(data.outside-temperature); 
+$.get('http://localhost:9292/', function(data) {
+	 $("#temperature").text(data.temp); 
 	})
 
 $("#up").on("click", function() {
